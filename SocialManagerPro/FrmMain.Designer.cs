@@ -182,7 +182,7 @@ namespace SocialManagerPro
 
             lblPreviewContent = new Label
             {
-                Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt next ut labore et dolore mag...",
+                Text = "Nội dung bài viết của bạn sẽ hiển thị tại đây. Bạn có thể kiểm tra định dạng, hình ảnh và cách trình bày trước khi quyết định đăng lên các nền tảng mạng xã hội...",
                 ForeColor = Color.FromArgb(60, 70, 85),
                 Font = new Font("Segoe UI", 8f),
                 Bounds = new Rectangle(8, 36, 268, 60),
