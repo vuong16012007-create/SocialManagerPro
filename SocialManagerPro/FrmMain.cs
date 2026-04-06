@@ -51,6 +51,51 @@ namespace SocialManagerPro
             foreach (Control c in pnlSidebar.Controls)
                 if (c is Button btn)
                     btn.Click += SidebarBtn_Click;
+
+            // 3 nút icon top bar
+            btnIconMenu.Click += (s, e) =>
+            {
+                MessageBox.Show("Menu chức năng đang phát triển!", "Menu",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+
+            btnIconLightning.Click += (s, e) =>
+            {
+                // Đăng tất cả bài Scheduled → Published
+                var ds = _danhSach.LayTatCa();
+                int count = 0;
+                foreach (var p in ds)
+                {
+                    if (p.Status == PostStatus.Scheduled)
+                    {
+                        _danhSach.DangBai(p.Id);
+                        count++;
+                    }
+                }
+                ApDungLoc();
+                MessageBox.Show("Đã đăng " + count + " bài Scheduled!", "Publish All",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+
+            btnIconSettings.Click += (s, e) =>
+            {
+                MessageBox.Show(
+                    "⚙  CÀI ĐẶT\n\n" +
+                    "Phiên bản: 1.0.0\n" +
+                    "Ngôn ngữ: Tiếng Việt\n" +
+                    "Nền tảng: .NET WinForms\n" +
+                    "Cấu trúc dữ liệu: Doubly LinkedList",
+                    "Settings",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            };
+
+            btnBenchmark.Click += (s, e) =>
+            {
+                var frm = new FrmSortBenchmark(_danhSach);
+                frm.ShowDialog(this);
+                ApDungLoc();  // Cập nhật lại feed sau khi sắp xếp
+            };
         }
 
         // ══════════════════════════════════════════════════════════════════════

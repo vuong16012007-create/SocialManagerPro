@@ -169,5 +169,30 @@ namespace SocialManagerPro
 
         /// <summary>Sinh ID tiếp theo (dùng để hiển thị preview).</summary>
         public int SinhIdMoi() => _nextId;
+
+        /// <summary>
+        /// Dựng lại LinkedList từ mảng đã sắp xếp.
+        /// Dùng bởi SortHelper sau mỗi lần sắp xếp.
+        /// </summary>
+        public void RebuildFromArray(Post[] arr)
+        {
+            if (arr == null || arr.Length == 0)
+            {
+                Head = Tail = null;
+                Count = 0;
+                return;
+            }
+
+            // Gán lại con trỏ Next / Prev cho từng node
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i].Prev = (i > 0) ? arr[i - 1] : null;
+                arr[i].Next = (i < arr.Length - 1) ? arr[i + 1] : null;
+            }
+
+            Head = arr[0];
+            Tail = arr[arr.Length - 1];
+            Count = arr.Length;
+        }
     }
 }

@@ -60,9 +60,13 @@ namespace SocialManagerPro
         private DateTimePicker dtpScheduled;
         private Label lblStatusField;
         private ComboBox cboStatus;
+        private Button btnBenchmark;
 
         // Action buttons
         private Button btnSaveDraft, btnDelete, btnSchedulePost;
+
+        // Icon buttons top bar
+        private Button btnIconMenu, btnIconLightning, btnIconSettings;
 
         protected override void Dispose(bool disposing)
         {
@@ -108,7 +112,7 @@ namespace SocialManagerPro
 
             btnDashboard = MakeSidebarBtn("  ⊞  Dashboard", 70);
             btnCreatePost = MakeSidebarBtn("  ✎  Create Post", 112);
-            btnScheduled = MakeSidebarBtn("  ⏰  Scheduled", 154);
+            btnNavScheduled = MakeSidebarBtn("  ⏰  Scheduled", 154);
             btnList = MakeSidebarBtn("  ≡  List", 196);
             btnAccounts = MakeSidebarBtn("  ○  Accounts", 238);
 
@@ -127,11 +131,12 @@ namespace SocialManagerPro
             btnSettingsSide.FlatAppearance.BorderSize = 0;
             btnSettingsSide.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 55, 75);
 
+
             btnList.BackColor = Color.FromArgb(45, 55, 75);
             btnList.ForeColor = Color.White;
 
             pnlSidebar.Controls.AddRange(new Control[]
-                { lblAppName, sepLine, btnDashboard, btnCreatePost, btnScheduled,
+                { lblAppName, sepLine, btnDashboard, btnCreatePost, btnNavScheduled,
                   btnList, btnAccounts, btnSettingsSide });
 
             // ══════════════════════════════════════════════════════════════════
@@ -327,10 +332,10 @@ namespace SocialManagerPro
             lblSearchIcon = new Label { Text = "🔍", Location = new Point(245, 6), AutoSize = true };
             pnlSearchWrap.Controls.AddRange(new Control[] { txtSearch, lblSearchIcon });
 
-            var btnIcon1 = MakeIconBtn("≡", new Rectangle(300, 12, 32, 28));
-            var btnIcon2 = MakeIconBtn("⚡", new Rectangle(336, 12, 32, 28));
-            var btnIcon3 = MakeIconBtn("⚙", new Rectangle(372, 12, 32, 28));
-            pnlTopBar.Controls.AddRange(new Control[] { pnlSearchWrap, btnIcon1, btnIcon2, btnIcon3 });
+            btnIconMenu = MakeIconBtn("≡", new Rectangle(300, 12, 32, 28));
+            btnIconLightning = MakeIconBtn("⚡", new Rectangle(336, 12, 32, 28));
+            btnIconSettings = MakeIconBtn("⚙", new Rectangle(372, 12, 32, 28));
+            pnlTopBar.Controls.AddRange(new Control[] { pnlSearchWrap, btnIconMenu, btnIconLightning, btnIconSettings });
 
             pnlFilters = new Panel { Dock = DockStyle.Top, Height = 60, BackColor = Color.Transparent, Padding = new Padding(0, 6, 0, 0) };
 
@@ -351,7 +356,20 @@ namespace SocialManagerPro
             cboPlatform.Items.AddRange(new object[] { "All Platforms", "Facebook", "Instagram", "LinkedIn", "TikTok" });
             cboPlatform.SelectedIndex = 0;
 
-            pnlFilters.Controls.AddRange(new Control[] { lblDate, dtpDate, lblStatus, pnlStatusFilter, lblPlatformLbl, cboPlatform });
+            btnBenchmark = new Button
+            {
+                Text = "⏱ So sánh Sort",
+                Bounds = new Rectangle(570, 24, 130, 28),
+                BackColor = Color.FromArgb(255, 149, 0),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 8.5f, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnBenchmark.FlatAppearance.BorderSize = 0;
+
+            pnlFilters.Controls.AddRange(new Control[]
+                { lblDate, dtpDate, lblStatus, pnlStatusFilter, lblPlatformLbl, cboPlatform, btnBenchmark });
 
             lblPostCount = new Label
             {
