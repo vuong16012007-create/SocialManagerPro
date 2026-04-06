@@ -335,7 +335,8 @@ namespace SocialManagerPro
             btnIconMenu = MakeIconBtn("≡", new Rectangle(300, 12, 32, 28));
             btnIconLightning = MakeIconBtn("⚡", new Rectangle(336, 12, 32, 28));
             btnIconSettings = MakeIconBtn("⚙", new Rectangle(372, 12, 32, 28));
-            pnlTopBar.Controls.AddRange(new Control[] { pnlSearchWrap, btnIconMenu, btnIconLightning, btnIconSettings });
+            pnlTopBar.Controls.AddRange(new Control[]
+            { pnlSearchWrap, btnIconMenu, btnIconLightning, btnIconSettings });
 
             pnlFilters = new Panel { Dock = DockStyle.Top, Height = 60, BackColor = Color.Transparent, Padding = new Padding(0, 6, 0, 0) };
 
@@ -351,25 +352,48 @@ namespace SocialManagerPro
             btnFailed = MakeFilterBtn("Failed", 276, false);
             pnlStatusFilter.Controls.AddRange(new Control[] { btnAll, btnDraft, btnScheduled, btnPublished, btnFailed });
 
-            lblPlatformLbl = new Label { Text = "Platform", AutoSize = true, Location = new Point(565, 8), ForeColor = Color.FromArgb(60, 70, 85), Font = new Font("Segoe UI", 9f, FontStyle.Bold) };
-            cboPlatform = new ComboBox { Location = new Point(565, 24), Width = 200, DropDownStyle = ComboBoxStyle.DropDownList };
-            cboPlatform.Items.AddRange(new object[] { "All Platforms", "Facebook", "Instagram", "LinkedIn", "TikTok" });
+            lblPlatformLbl = new Label
+            {
+                Text = "Platform",
+                AutoSize = true,
+                Location = new Point(430, 16),
+                ForeColor = Color.FromArgb(60, 70, 85),
+                Font = new Font("Segoe UI", 9f, FontStyle.Bold)
+            };
+
+            cboPlatform = new ComboBox
+            {
+                Location = new Point(495, 12),
+                Width = 160,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Segoe UI", 9f)
+            };
+            cboPlatform.Items.AddRange(new object[]
+                { "All Platforms", "Facebook", "Instagram", "LinkedIn", "TikTok" });
             cboPlatform.SelectedIndex = 0;
+
+            pnlTopBar.Controls.Add(lblPlatformLbl);
+            pnlTopBar.Controls.Add(cboPlatform);
 
             btnBenchmark = new Button
             {
-                Text = "⏱ So sánh Sort",
-                Bounds = new Rectangle(570, 24, 130, 28),
-                BackColor = Color.FromArgb(255, 149, 0),
+                Text = "⏱  SO SÁNH SORT",
+                Bounds = new Rectangle(565, 18, 160, 38),
+                BackColor = Color.FromArgb(255, 140, 0),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 8.5f, FontStyle.Bold),
+                Font = new Font("Segoe UI", 10f, FontStyle.Bold),
                 Cursor = Cursors.Hand
             };
             btnBenchmark.FlatAppearance.BorderSize = 0;
+            btnBenchmark.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 100, 0);
+
+            // Ẩn Platform filter, thay bằng nút Sort nổi bật
+            lblPlatformLbl.Visible = true;
+            cboPlatform.Visible = true;
 
             pnlFilters.Controls.AddRange(new Control[]
-                { lblDate, dtpDate, lblStatus, pnlStatusFilter, lblPlatformLbl, cboPlatform, btnBenchmark });
+            { lblDate, dtpDate, lblStatus, pnlStatusFilter, btnBenchmark });
 
             lblPostCount = new Label
             {
